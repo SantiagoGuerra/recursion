@@ -43,4 +43,22 @@ def even_elements array
 end
 
 
-puts even_elements(array_generate(100)).size
+# fourth -> return only palindromes numbers in an array
+=begin
+  even_elements( [..., 11, 12, 13] ) ==> [..., 11]
+=end
+def is_palindrome? word
+  word.to_s.reverse == word.to_s ? true : false
+end
+
+def palindrome_numbers array
+  def aux(array, container, element, index)
+    if index >= array.size
+      container
+    else
+      aux(array, container.push(is_palindrome?(element) ? element : nil), array[index], index + 1)
+    end 
+  end
+
+  aux(array, [], array[0], 1).compact
+end
